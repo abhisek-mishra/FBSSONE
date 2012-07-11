@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+			   xmlns:s="library://ns.adobe.com/flex/spark" applicationDPI="160" applicationComplete="initMe()">
+	<fx:Declarations>
+		<!-- Place non-visual elements (e.g., services, value objects) here -->
+	</fx:Declarations>
+	
+	<fx:Script>
+		<![CDATA[
+			import com.open.FBSSO;
+			private var extension:FBSSO = new FBSSO(); 
+			public function initMe():void 
+			{ 
+				
+				hello.text= "ok starting press button to start";
+				
+			} 
+			
+			public function loginfunc(event:StatusEvent):void
+			{
+				
+				hello.text = event.code;
+			}
+			public function invalidfunc(event:StatusEvent):void
+			{
+				
+				hello.text = event.code;
+			}
+			public function clickHandler(event:Event):void
+			{
+				hello.text = "calling native";
+				
+				extension.initSSO();
+				
+				
+			}
+			
+			
+		]]>
+	</fx:Script>
+	
+	<s:Label id="hello" x="79" y="26" width="100%">
+		
+	</s:Label>
+	<s:Button id="b1" x="114" y="106" label="click" click="clickHandler(event)">
+		
+	</s:Button>
+	
+</s:Application>
